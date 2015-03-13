@@ -14,6 +14,12 @@ gem 'slim-rails'
 gem 'secure_headers'
 gem 'ffaker'
 gem 'timecop'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+gem 'whenever', :require => false
+gem "net-ping", :git => 'git://github.com/djberg96/net-ping.git'
+gem 'bootstrap-sass', :git => 'https://github.com/twbs/bootstrap-sass.git', :branch => 'next'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529201158) do
+ActiveRecord::Schema.define(version: 20150307180825) do
 
   create_table "appliances", force: true do |t|
     t.string   "name"
@@ -21,6 +21,21 @@ ActiveRecord::Schema.define(version: 20140529201158) do
   end
 
   add_index "appliances", ["name"], name: "index_appliances_on_name", unique: true
+
+  create_table "stats", force: true do |t|
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statuses", force: true do |t|
+    t.string   "status"
+    t.integer  "target_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "statuses", ["target_id"], name: "index_statuses_on_target_id"
 
   create_table "targets", force: true do |t|
     t.integer  "appliance_id"

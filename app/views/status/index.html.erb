@@ -1,0 +1,67 @@
+<%# link_to "Update Specs", {:controller => :status, :action => :indexπ}, {:method => :put } %>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; float:right; margin-right:150px;"></div>
+
+<div class="span3">
+<table class="table table-bordered table-striped">
+    <thead>
+  <tr>
+    <th>Device</th>
+    <th>Status</th>
+  </tr>
+</thead>
+<% @status.each do |key, value| %>
+<tbody>
+  <tr>
+    <td><%= key %></td>
+    <td><%= value %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+</div>
+
+<script type="text/javascript">
+
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Device tracking report'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Devise Tracking',
+            data: 
+
+            [
+                ['UP', <%=@up %>],
+                ['Down', <%= @down%>]
+            ]
+        }]
+    });
+});
+
+</script>
